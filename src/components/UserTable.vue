@@ -16,7 +16,7 @@ const handleFileUpload = async (event: Event, userId: number) => {
   }
 
   const photoUrl = URL.createObjectURL(file)
-git
+
   await userStore.updatePhoto(userId, photoUrl)
 
   target.value = ''
