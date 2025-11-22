@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '../stores/userStore'
-import type { User } from '../types/user'
+
 
 const userStore = useUserStore()
 
@@ -22,9 +22,7 @@ const handleFileUpload = async (event: Event, userId: number) => {
   target.value = ''
 }
 
-const getInitials = (user: User) => {
-  return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
-}
+
 </script>
 
 <template>
