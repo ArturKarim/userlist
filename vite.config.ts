@@ -3,6 +3,10 @@ import vue from '@vitejs/plugin-vue'
 
 
 export default defineConfig({
-  base: './userlist/',
+  base: '/userlist/',
   plugins: [vue()],
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
+  }
 })
