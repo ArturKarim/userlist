@@ -8,12 +8,12 @@ export const useUserStore = defineStore('user', () => {
   const loading = ref(false)
   const error = ref<string | null>(null)
   
-  // Фильтры
+
   const minAge = ref<number | null>(null)
   const sortBy = ref<'name' | 'age' | null>(null)
   const sortOrder = ref<'asc' | 'desc'>('asc')
 
-  // Загрузка пользователей
+
   const fetchUsers = async () => {
     loading.value = true
     error.value = null
@@ -26,7 +26,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  // Обновление фото
+
   const updatePhoto = async (userId: number, photoUrl: string) => {
     try {
       const updatedUser = await updateUserPhoto(userId, photoUrl)
@@ -39,27 +39,27 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  //минимальный возраст
+
   const setMinAge = (age: number | null) => {
     minAge.value = age
   }
 
-  // Сортировка
+
   const setSort = (by: 'name' | 'age' | null, order: 'asc' | 'desc' = 'asc') => {
     sortBy.value = by
     sortOrder.value = order
   }
 
-  // Отфильтрованные и отсортированные пользователи
+
   const filteredAndSortedUsers = computed(() => {
     let result = [...users.value]
 
-    // Фильтр по возрасту - ИСПРАВЛЕННАЯ ЛОГИКА
+
     if (minAge.value !== null) {
       result = result.filter(user => user.age === minAge.value!)
     }
 
-    // Сортировка
+
     if (sortBy.value === 'name') {
       result.sort((a, b) => {
         const nameA = `${a.firstName} ${a.lastName}`.toLowerCase()
