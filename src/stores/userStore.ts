@@ -54,9 +54,9 @@ export const useUserStore = defineStore('user', () => {
   const filteredAndSortedUsers = computed(() => {
     let result = [...users.value]
 
-    // Фильтр по возрасту
+    // Фильтр по возрасту - ИСПРАВЛЕННАЯ ЛОГИКА
     if (minAge.value !== null) {
-      result = result.filter(user => user.age >= minAge.value!)
+      result = result.filter(user => user.age === minAge.value!)
     }
 
     // Сортировка
@@ -64,15 +64,15 @@ export const useUserStore = defineStore('user', () => {
       result.sort((a, b) => {
         const nameA = `${a.firstName} ${a.lastName}`.toLowerCase()
         const nameB = `${b.firstName} ${b.lastName}`.toLowerCase()
-        return sortOrder.value === 'asc' 
-          ? nameA.localeCompare(nameB)
-          : nameB.localeCompare(nameA)
+        return sortOrder.value === 'asc'
+            ? nameA.localeCompare(nameB)
+            : nameB.localeCompare(nameA)
       })
     } else if (sortBy.value === 'age') {
       result.sort((a, b) => {
-        return sortOrder.value === 'asc' 
-          ? a.age - b.age
-          : b.age - a.age
+        return sortOrder.value === 'asc'
+            ? a.age - b.age
+            : b.age - a.age
       })
     }
 
